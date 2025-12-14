@@ -1,0 +1,27 @@
+torch==2.2.2
+torchvision==0.17.2
+torchaudio==2.2.2
+
+transformers==4.57.1
+datasets==4.4.1
+peft==0.18.0
+sentence-transformers==5.1.2
+accelerate==1.11.0
+
+numpy==1.26.4
+pandas==2.3.3
+scikit-learn==1.7.2
+einops==0.8.1
+triton_pre_mlir
+matplotlib==3.10.7
+seaborn==0.13.2
+
+Django==5.2.9
+djangorestframework==3.16.1
+faiss-cpu==1.13.1
+uvicorn==0.38.0
+
+# pip install django djangorestframework sentence-transformers faiss-cpu uvicorn
+
+# brew install ollama
+# ollama pull phi3.5:mini
