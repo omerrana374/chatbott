@@ -2,6 +2,7 @@ import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from .load_data import load_all_data
+from .doc_loader import load_all_docs
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 INDEX_FILE = "faiss_index.bin"
@@ -12,18 +13,18 @@ def build_index():
     print("Loading model...")
     model = SentenceTransformer(MODEL_NAME)
 
-    print("Loading dataset...")
+    print("Loading synthetic dataset...")
     dataset = load_all_data()
-    print(f"Total records: {len(dataset)}")
+    print(f"Synthetic dataset records: {len(dataset)}")
 
-    texts = []
-    for item in dataset:
-        if isinstance(item, dict):
-            texts.append(item["text"])
-        else:
-            raise ValueError(
-                "Detected non-dict item. Your JSONL loader must return dicts."
-            )
+    print("Loading documentation...")
+    docs = load_all_docs()
+    print(f"Documentation records: {len(docs)}")
+
+    full_data = dataset + docs
+    print(f"Total combined records: {len(full_data)}")
+
+    texts = [item["text"] for item in full_data]
 
     print("Generating embeddings...")
     embeddings = model.encode(texts, show_progress_bar=True)
@@ -40,6 +41,6 @@ def build_index():
     faiss.write_index(index, INDEX_FILE)
 
     print("Saving metadata...")
-    np.save(META_FILE, np.array(dataset, dtype=object))
+    np.save(META_FILE, np.array(full_data, dtype=object))
 
     print("FAISS index successfully built!")
