@@ -30,7 +30,7 @@ def call_llm(prompt: str) -> str:
     response = requests.post(
         OLLAMA_URL,
         json={
-            "model": "phi3.5:mini",
+            "model": "phi3:mini",
             "prompt": prompt,
             "stream": False,
         },
