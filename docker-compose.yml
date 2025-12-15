@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  mvp:
+    build: .
+    container_name: mvp
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
