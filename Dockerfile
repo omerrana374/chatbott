@@ -26,4 +26,4 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
-CMD ["gunicorn", "teacher_bot.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "4", "--timeout", "120"]
+CMD ["gunicorn", "teacher_bot.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "1", "--timeout", "300"]
