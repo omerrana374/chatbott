@@ -6,6 +6,7 @@ from teacher_bot.retriever import Retriever
 from rest_framework import status
 from teacher_bot.doc_loader import load_all_docs
 from teacher_bot.vector_store import add_to_index
+from django.views.decorators.csrf import csrf_exempt
 
 retriever = Retriever()
 
@@ -33,6 +34,7 @@ def retrieve_answer(request):
     return Response({"query": query, "results": results})
 
 
+@csrf_exempt
 @api_view(["POST"])
 def chat(request):
     query = request.data.get("query", "")
