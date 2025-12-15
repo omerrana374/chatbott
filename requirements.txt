@@ -52,6 +52,7 @@ Django==5.2.9
 djangorestframework==3.16.1
 uvicorn==0.38.0
 gunicorn==22.0.0
+requests
 
 # ==============================
 # Vector Search (CPU – safe to keep)
